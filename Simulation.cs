@@ -1,4 +1,7 @@
 using System;
+using System.Security.Cryptography.X509Certificates;
+using System.Linq;
+using System.Data;
 
 class Simulation
 {   
@@ -52,11 +55,12 @@ class Simulation
         {                                                                                                            
             foreach (Zwischenhändler Händler in Globals.Händler)                                       //Endlosschleife für die Simulation 
             {                               
-                string Output = Händler.Name + " von " + Händler.Firma + " | Tag " + AktuellerTag;              //Erstelle Output String
+                string Output = Händler.Name + " von " + Händler.Firma + " | Tag " + AktuellerTag;     //Erstelle Output String
                 Console.WriteLine(Output);
                 CheckChoices();                                                                        //Checke die Möglichkeiten des Händlers
             }
             AktuellerTag++;
+            VerschiebeHändlerAnordnung(1);
         }
     }
 
@@ -70,6 +74,19 @@ class Simulation
             Console.WriteLine("Ungültige Eingabe :-(");
             Console.WriteLine("Probiere es nochmal:");
         }
+    }
+    
+    /// <summary>
+    ///Verschiebt die Händler um den Mitgegebenen Parameter nach rechts
+    ///Letzter Händler kommt dabei an die erste Stelle
+    /// </summary>
+    void VerschiebeHändlerAnordnung (int Verschiebung)
+    {
+        for(int i = 0; i < Verschiebung; i++){
+            Zwischenhändler ErsterHändler = Globals.Händler[0];
+            Globals.Händler.Add(ErsterHändler);
+            Globals.Händler.RemoveAt(0);
+        }    
     }
 
 }
