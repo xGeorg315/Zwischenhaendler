@@ -13,7 +13,7 @@ namespace Zwischenhändler_1
         {
            Simulation start = new Simulation();
            start.AnzahlHändler();
-           start.HändlerErstellen();
+           start.ErstelleHändler();
            start.StarteSimulation();
         }
     }
