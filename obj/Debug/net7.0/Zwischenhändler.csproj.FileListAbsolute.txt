@@ -1,0 +1,14 @@
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\bin\Debug\net7.0\Zwischenhändler.exe
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\bin\Debug\net7.0\Zwischenhändler.deps.json
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\bin\Debug\net7.0\Zwischenhändler.runtimeconfig.json
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\bin\Debug\net7.0\Zwischenhändler.dll
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\bin\Debug\net7.0\Zwischenhändler.pdb
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\obj\Debug\net7.0\Zwischenhändler.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\obj\Debug\net7.0\Zwischenhändler.AssemblyInfoInputs.cache
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\obj\Debug\net7.0\Zwischenhändler.AssemblyInfo.cs
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\obj\Debug\net7.0\Zwischenhändler.csproj.CoreCompileInputs.cache
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\obj\Debug\net7.0\Zwischenhändler.dll
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\obj\Debug\net7.0\refint\Zwischenhändler.dll
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\obj\Debug\net7.0\Zwischenhändler.pdb
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\obj\Debug\net7.0\Zwischenhändler.genruntimeconfig.cache
+C:\Users\georg\OneDrive\Desktop\Zwischenhändler\obj\Debug\net7.0\ref\Zwischenhändler.dll
