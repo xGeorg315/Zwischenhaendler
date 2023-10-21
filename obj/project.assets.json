@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\georg\\OneDrive\\Desktop\\Zwischenhändler\\Zwischenhändler.csproj",
+      "projectUniqueName": "C:\\Users\\georg\\OneDrive\\Dokumente\\GitHub\\Zwischenhaendler\\Zwischenhändler.csproj",
       "projectName": "Zwischenhändler",
-      "projectPath": "C:\\Users\\georg\\OneDrive\\Desktop\\Zwischenhändler\\Zwischenhändler.csproj",
+      "projectPath": "C:\\Users\\georg\\OneDrive\\Dokumente\\GitHub\\Zwischenhaendler\\Zwischenhändler.csproj",
       "packagesPath": "C:\\Users\\georg\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\georg\\OneDrive\\Desktop\\Zwischenhändler\\obj\\",
+      "outputPath": "C:\\Users\\georg\\OneDrive\\Dokumente\\GitHub\\Zwischenhaendler\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\georg\\AppData\\Roaming\\NuGet\\NuGet.Config"
