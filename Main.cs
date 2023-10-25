@@ -11,6 +11,9 @@ namespace Zwischenhändler_1
     {  
         static void Main(string[] args)
         {
+           DateiLesen DateiLesen = new DateiLesen();
+           DateiLesen.LeseProdukte();
+           
            Simulation start = new Simulation();
            start.AnzahlHändler();
            start.ErstelleHändler();
