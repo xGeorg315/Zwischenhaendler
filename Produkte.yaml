@@ -1,0 +1,9 @@
+- Name: Gurke
+  Haltbarkeit: 21
+  Basispreis: 5
+- Name: Aprikose
+  Haltbarkeit: 4
+  Basispreis: 20
+- Name: Birne
+  Haltbarkeit: 8
+  Basispreis: 10
