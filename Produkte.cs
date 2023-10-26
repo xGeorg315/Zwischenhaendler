@@ -5,10 +5,17 @@ class Produkte : ICloneable
     public int BasisPreis = 0;
     public int Menge = 0;
     
-    public object Clone()
+    /// <summary>
+    /// Klone das Objekt 
+    /// </summary>
+    public object Klone()
     {
         return this.MemberwiseClone();
     }
+
+    /// <summary>
+    /// Liste alle Verfügbaren Produkte auf
+    /// </summary>
     public void ListeProdukte()
     {
         int i = 1;
@@ -20,7 +27,5 @@ class Produkte : ICloneable
             Console.WriteLine(string.Format(Ausgabe, i, Produkt.ProduktName, Produkt.Haltbarkeit, Produkt.BasisPreis));
             i++;
         }
-
-   
     }
 }
