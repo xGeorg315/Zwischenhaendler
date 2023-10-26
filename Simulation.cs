@@ -114,55 +114,24 @@ class Simulation
     }
     
     /// <summary>
-    ///Verschiebt die Händler um den Mitgegebenen Parameter nach rechts
-    ///Letzter Händler kommt dabei an die erste Stelle
+    /// Printe das Hauptmenü 
     /// </summary>
-    void VerschiebeHändlerAnordnung (int Verschiebung)
+    public void HauptmenueAnzeigen(Zwischenhändler Händler, int AktuellerTag)
     {
-        for(int i = 0; i < Verschiebung; i++){
-            Zwischenhändler ErsterHändler = Globals.Händler[0];
-            Globals.Händler.Add(ErsterHändler);
-            Globals.Händler.RemoveAt(0);
-        }    
+        //Erstelle Output String
+        string Ausgabe = "{0} von {1} | {2} | Tag: {3}";                                       
+        Console.WriteLine(string.Format(
+            Ausgabe, 
+            Händler.Name, 
+            Händler.Firma, 
+            Händler.Kontostand, 
+            AktuellerTag
+            ));
+        Console.WriteLine("e) Einkaufen");  
+        Console.WriteLine("v) Verkaufen"); 
+        Console.WriteLine("b) Runde beenden"); 
     }
-
-    /// <summary>
-    /// Lässt den Händler eine von 3 verschiedenen Schwierigkeiten Auswählen
-    /// </summary>
-    void AuswahlSchwierigkeit (Zwischenhändler Händler)
-    {
-        //Geldbeträge für die verschiedenen Schwierigkeiten
-        const int EINFACH = 15000;
-        const int MITTEL = 10000;
-        const int SCHWER = 7000;
-        
-        Console.WriteLine("Bitte wählen sie die Schwierigkeit vom Händler:");
-        Console.WriteLine("a) Einfach - 15000Euro\nb) Mittel 10000Euro\nc) Schwer: 7000Euro");
-
-        //Warte bis Händler einen Kontostand zugewiesen wird
-        while(Händler.Kontostand == 0)
-        {
-            //Weise je nach Input geldbetrag zu 
-            string input = Console.ReadLine()!;
-            switch(input)
-            {
-                case "a":
-                    Händler.Kontostand = EINFACH;
-                    break;
-                case "b":
-                    Händler.Kontostand = MITTEL;
-                    break;    
-                case "c":
-                    Händler.Kontostand = SCHWER;
-                    break;
-                default:
-                    Console.WriteLine("Ungültige Eingabe :-(");
-                    Console.WriteLine("Probiere es nochmal:");
-                    break;
-            }
-        }
-    }
-
+    
     /// <summary>
     /// Starte das Einkaufsmenü
     /// </summary>
@@ -202,24 +171,6 @@ class Simulation
         Console.WriteLine("z) Zurück");
     }
 
-    /// <summary>
-    /// Printe das Hauptmenü 
-    /// </summary>
-    public void HauptmenueAnzeigen(Zwischenhändler Händler, int AktuellerTag)
-    {
-        //Erstelle Output String
-        string Ausgabe = "{0} von {1} | {2} | Tag: {3}";                                       
-        Console.WriteLine(string.Format(
-            Ausgabe, 
-            Händler.Name, 
-            Händler.Firma, 
-            Händler.Kontostand, 
-            AktuellerTag
-            ));
-        Console.WriteLine("e) Einkaufen");  
-        Console.WriteLine("v) Verkaufen"); 
-        Console.WriteLine("b) Runde beenden"); 
-    }
 
     /// <summary>
     /// Funktion um Kauf abzuschließen
@@ -360,4 +311,55 @@ class Simulation
             }
         }
     }
+
+    /// <summary>
+    ///Verschiebt die Händler um den Mitgegebenen Parameter nach rechts
+    ///Letzter Händler kommt dabei an die erste Stelle
+    /// </summary>
+    void VerschiebeHändlerAnordnung (int Verschiebung)
+    {
+        for(int i = 0; i < Verschiebung; i++){
+            Zwischenhändler ErsterHändler = Globals.Händler[0];
+            Globals.Händler.Add(ErsterHändler);
+            Globals.Händler.RemoveAt(0);
+        }    
+    }
+
+    /// <summary>
+    /// Lässt den Händler eine von 3 verschiedenen Schwierigkeiten Auswählen
+    /// </summary>
+    void AuswahlSchwierigkeit (Zwischenhändler Händler)
+    {
+        //Geldbeträge für die verschiedenen Schwierigkeiten
+        const int EINFACH = 15000;
+        const int MITTEL = 10000;
+        const int SCHWER = 7000;
+        
+        Console.WriteLine("Bitte wählen sie die Schwierigkeit vom Händler:");
+        Console.WriteLine("a) Einfach - 15000Euro\nb) Mittel 10000Euro\nc) Schwer: 7000Euro");
+
+        //Warte bis Händler einen Kontostand zugewiesen wird
+        while(Händler.Kontostand == 0)
+        {
+            //Weise je nach Input geldbetrag zu 
+            string input = Console.ReadLine()!;
+            switch(input)
+            {
+                case "a":
+                    Händler.Kontostand = EINFACH;
+                    break;
+                case "b":
+                    Händler.Kontostand = MITTEL;
+                    break;    
+                case "c":
+                    Händler.Kontostand = SCHWER;
+                    break;
+                default:
+                    Console.WriteLine("Ungültige Eingabe :-(");
+                    Console.WriteLine("Probiere es nochmal:");
+                    break;
+            }
+        }
+    }
+
 }
