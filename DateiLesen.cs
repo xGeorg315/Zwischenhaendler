@@ -7,6 +7,9 @@ class DateiLesen
     string PfadGesuchterDatei = "";
     string [] DateiInhalt;
 
+    /// <summary>
+    /// Starte Lese Zyklus
+    /// </summary>
     public void LeseProdukte()
     {   
         FindeDatei(GesuchteDatei);
@@ -14,38 +17,50 @@ class DateiLesen
         FilterProdukte();
     }
 
+    /// <summary>
+    /// Suche die Datei
+    /// Funktion such im Strang alles ab, geht jedoch nicht andere Ordner/Stränge rein
+    /// </summary>
     public void FindeDatei(string GesuchteDatei)
     {
         string? AktuellerPfad = Directory.GetCurrentDirectory();
         string [] DateiSuche;
         bool Gefunden = false;
 
+        //Warte bis die Datei gefunden wurde
         while(!Gefunden)
-        {
+        {   
+            //Wenn der Pfad zuende ist breche ab
              if(AktuellerPfad == null)
             {
                 Console.WriteLine("Die Produkt Datei konnte nicht gefunden werden");
                 break;
             }
-
+            //Liste die Dateien im aktuellen Pfad
             DateiSuche = Directory.GetFiles(AktuellerPfad);
-           
+            // Checke ob gefundene Datei darunter ist
             foreach(var Datei in DateiSuche)
             {
+                //Speichere Pfad der Gesuchten datei wenn Datei vorhanden
                 if(Datei.Contains(GesuchteDatei))
                 {
                     Gefunden = true;
                     PfadGesuchterDatei = Datei;
                 }
             }
+            //Gehe einen Ordner zurück
             AktuellerPfad = Path.GetDirectoryName(AktuellerPfad);
         }
     }
-
+    /// <summary>
+    /// Lese die Datei aus
+    /// </summary>
     public void LeseDatei()
     {
+        //Checke ob Datei noch existiert
         if(!File.Exists(PfadGesuchterDatei)){
             Console.WriteLine("Beim Lesen ist etwas schief gelaufen"); 
+            return;
         }
         
         DateiInhalt = File.ReadAllLines(PfadGesuchterDatei);
