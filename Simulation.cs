@@ -8,67 +8,90 @@ class Simulation
 {   
     int AnzahlZwischenhändler = 0;
 
+    /// <summary>
+    /// Abfrage wie viele Händler teilnehmen
+    /// </summary>
     public void AnzahlHändler()
     {
-        Console.WriteLine("Wieviele Zwischenhändler nehmen teil?");   
-        while(true)                                                                                     //Wartet bis eine Zahl eingegeben wurde
+        Console.WriteLine("Wieviele Zwischenhändler nehmen teil?");
+        //Wartet bis eine Zahl eingegeben wurde   
+        while(true)                                                                                     
         {                                                                        
             string UserInput = Console.ReadLine()!;
-            if (Int32.TryParse(UserInput, out AnzahlZwischenhändler)) break;                            //Check ob UserInput eine Zahl ist 
+            //Check ob UserInput eine Zahl ist 
+            if (Int32.TryParse(UserInput, out AnzahlZwischenhändler)) break;                            
             Console.WriteLine("Sieht so aus als wäre das keine Nummer gewesen");
             Console.WriteLine("Erneut Versuchen:");
         }
     }
 
+    /// <summary>
+    /// Erstelle die Händler Objekte
+    /// </summary>
     public void ErstelleHändler()
     {
-        for(int i = 1; i <= AnzahlZwischenhändler; i++)                                                 //Erstelle x Zwischenhändler
+        //Erstelle x Zwischenhändler
+        for(int i = 1; i <= AnzahlZwischenhändler; i++)                                                 
         {                                   
             Zwischenhändler Händler = new Zwischenhändler();
 
             while(true)
             {
-                string Ausgabe = "Name von Zwischenhändler " + i;                                       //Frage Name des Händlers ab
+                //Frage Name des Händlers ab
+                string Ausgabe = "Name von Zwischenhändler " + i;                                       
                 Console.WriteLine(Ausgabe);
                 string NameHändler = Console.ReadLine()!;
 
-                Ausgabe = "Firma von " + NameHändler;                                                   //Frage Firma des Händlers ab
+                //Frage Firma des Händlers ab
+                Ausgabe = "Firma von " + NameHändler;                                                   
                 Console.WriteLine(Ausgabe);
                 string NameFirma = Console.ReadLine()!;   
                 
                 if(!string.IsNullOrWhiteSpace(NameFirma) && !string.IsNullOrWhiteSpace(NameHändler))
                 {
-                    Händler.Name = NameHändler;                                                 //Speichere Name in den Händler
-                    Händler.Firma = NameFirma;                                                  //Speichere Firma in den Händler
+                    //Speichere Name in das angelegte Händler Objekt
+                    Händler.Name = NameHändler;            
+                    //Speichere Firma in das angelegte Händler Objekt                                    
+                    Händler.Firma = NameFirma;                                               
                     break;
                 }
                 Console.WriteLine("Einer der beiden Namen wurde nicht korrekt ausgefüllt");
                 Console.WriteLine("Versuche es nochmal");
             }
-            Globals.Händler.Add(Händler);                                                       //Speichere die Händler in eine Globale var
+            //Speichere die Händler in eine Globale var
+            Globals.Händler.Add(Händler);                                                       
             AuswahlSchwierigkeit(Händler);
         }
     }
 
+    /// <summary>
+    /// Satrte die Händler Simulation
+    /// </summary>
     public void StarteSimulation()
     {
         int AktuellerTag = 1;
+        //Endlosschleife für die Simulation 
         while (true)
         {                                                                                                            
-            foreach (Zwischenhändler Händler in Globals.Händler)                                       //Endlosschleife für die Simulation 
+            foreach (Zwischenhändler Händler in Globals.Händler)                                       
             {    
-                Hauptmenue(Händler, AktuellerTag);                                                 //Checke die Möglichkeiten des Händlers
+                Hauptmenue(Händler, AktuellerTag);                                                 
             }
             AktuellerTag++;
             VerschiebeHändlerAnordnung(1);
         }
     }
 
+    /// <summary>
+    /// Starte Hauptmenü
+    /// </summary>
     void Hauptmenue(Zwischenhändler Händler, int AktuellerTag)
     {
+        //Warte auf gültigen Input
         while (true)
         {    
-            HauptmenueAnzeigen(Händler,AktuellerTag);                                                                                          //Warte auf gültigen Input
+            //Leite je nach Input Weiter oder beende die Runde
+            HauptmenueAnzeigen(Händler,AktuellerTag);                                                                                          
             string input = Console.ReadLine()!;
             if (input == "b")
             {
@@ -108,14 +131,18 @@ class Simulation
     /// </summary>
     void AuswahlSchwierigkeit (Zwischenhändler Händler)
     {
+        //Geldbeträge für die verschiedenen Schwierigkeiten
         const int EINFACH = 15000;
         const int MITTEL = 10000;
         const int SCHWER = 7000;
         
         Console.WriteLine("Bitte wählen sie die Schwierigkeit vom Händler:");
         Console.WriteLine("a) Einfach - 15000Euro\nb) Mittel 10000Euro\nc) Schwer: 7000Euro");
+
+        //Warte bis Händler einen Kontostand zugewiesen wird
         while(Händler.Kontostand == 0)
         {
+            //Weise je nach Input geldbetrag zu 
             string input = Console.ReadLine()!;
             switch(input)
             {
@@ -136,30 +163,38 @@ class Simulation
         }
     }
 
+    /// <summary>
+    /// Starte das Einkaufsmenü
+    /// </summary>
     public void EinkaufsMenue(Zwischenhändler Händler)
     {
+        //Warte auf gültigen Input
         while(true)
         {
             EinkaufsMenueAnzeigen();
             int AusgewaehltesProdukt;
             string UserInput = Console.ReadLine()!;
+            //Kehre ins Hauptmenü zurück
             if (UserInput == "z") break;
 
+            //Checke ob UserInput ein Int ist 
             if (Int32.TryParse(UserInput, out AusgewaehltesProdukt))
             {
-
              int GesamtAnzahlProdukte = Globals.VerfügbareProdukte.Count();
+             //Checke ob UserInput in der Gültigen Range liegt 
              if(AusgewaehltesProdukt <= GesamtAnzahlProdukte && AusgewaehltesProdukt > 0)
              {
                 string Ausgabe = "Wie viele vom Produkt ({0}) möchten Sie kaufen";
                 Console.WriteLine(string.Format(Ausgabe, Globals.VerfügbareProdukte[AusgewaehltesProdukt - 1].ProduktName));
                 EinkaufsLogik(Händler, AusgewaehltesProdukt);
              }   
-
             }
         }
     }
 
+    /// <summary>
+    /// Printe das Einkaufsmenü mit allen Verfügbaren Produkten
+    /// </summary>
     public void EinkaufsMenueAnzeigen()
     {
         Produkte EinkaufsMenü = new Produkte();
@@ -167,9 +202,13 @@ class Simulation
         Console.WriteLine("z) Zurück");
     }
 
+    /// <summary>
+    /// Printe das Hauptmenü 
+    /// </summary>
     public void HauptmenueAnzeigen(Zwischenhändler Händler, int AktuellerTag)
     {
-        string Ausgabe = "{0} von {1} | {2} | Tag: {3}";                                       //Erstelle Output String
+        //Erstelle Output String
+        string Ausgabe = "{0} von {1} | {2} | Tag: {3}";                                       
         Console.WriteLine(string.Format(
             Ausgabe, 
             Händler.Name, 
@@ -182,22 +221,30 @@ class Simulation
         Console.WriteLine("b) Runde beenden"); 
     }
 
+    /// <summary>
+    /// Funktion um Kauf abzuschließen
+    /// </summary>
     public void EinkaufsLogik(Zwischenhändler Händler, int AusgewaehltesProdukt)
     {
+        //Warte auf gültigen Input 
         while(true)
         {
             string UserInput = Console.ReadLine()!;
             int KaufAnzahl;
-
+            //Checke ob UserInput ein Int ist 
             if (Int32.TryParse(UserInput, out KaufAnzahl))
             {
-                Produkte GekauftesProdukt = (Produkte)Globals.VerfügbareProdukte[AusgewaehltesProdukt - 1].Clone();
+                //Clone das Produkt aus der Globalen Produktliste
+                Produkte GekauftesProdukt = (Produkte)Globals.VerfügbareProdukte[AusgewaehltesProdukt - 1].Klone();
+                //Passe die Menge anhand der Gekauften Menge an
                 GekauftesProdukt.Menge = KaufAnzahl;
+                //Buche Betrag ab und Füge das Produkt dem jeweiligen Händler hinzu
                 Händler.Kontostand -= GekauftesProdukt.BasisPreis * KaufAnzahl; 
                 Händler.GekaufteProdukte.Add(GekauftesProdukt);
                 Console.WriteLine("Kauf erfolgreich");
                 return;
             }
+            //Breche Kauf ab 
             if(UserInput == "z")
             {
                 Console.WriteLine("Kauf abgebrochen");
@@ -206,23 +253,29 @@ class Simulation
 
         }
     }
+
+    /// <summary>
+    /// Starte das Verkaufsmenü
+    /// </summary>
     public void VerkaufsMenue(Zwischenhändler Händler)
     {
         int AusgewaehltesProdukt;
-
+        //Checke ob Produkte zum Verkauf sind 
         if(Händler.GekaufteProdukte.Count() == 0)
         {
             Console.WriteLine("Keine Produkte gekauft");
             return;
         }
 
+        //Warte auf gültigen Input
         while(true)
         {
             VerkaufsMenueAnzeigen(Händler);
             string UserInput = Console.ReadLine()!;
+            //Checke ob User Input ein Int ist
             if (Int32.TryParse(UserInput, out AusgewaehltesProdukt))
             {
-
+                //Checke ob UserInput in der gültigen Range liegt
                 int GesamtAnzahlProdukte = Globals.VerfügbareProdukte.Count();
                 if(AusgewaehltesProdukt <= GesamtAnzahlProdukte && AusgewaehltesProdukt > 0)
                 {
@@ -231,6 +284,7 @@ class Simulation
                         Ausgabe, 
                         Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].ProduktName, 
                         Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].Menge));
+                    //Schließe Kauf ab
                     VerkaufsLogik(Händler, AusgewaehltesProdukt);
                 }   
             }
@@ -242,11 +296,16 @@ class Simulation
             }
         }
     }
+
+    /// <summary>
+    /// Printe das Verkaufsmenü
+    /// </summary>
     public void VerkaufsMenueAnzeigen(Zwischenhändler Händler)
     {
         int i = 1;
 
         Console.WriteLine("Produkte im Besitz:");
+        //Itteriere durch die Gekauften Produkte und printe sie 
         foreach(Produkte Produkt in Händler.GekaufteProdukte)
         {
             String Ausgabe = "{0}) {1} ({2} Tage) ${3}/Stück";
@@ -261,6 +320,9 @@ class Simulation
         Console.WriteLine("z) Zurück");
     }
 
+    /// <summary>
+    /// Funktion um Verkauf abzuschließen
+    /// </summary>
     public void VerkaufsLogik(Zwischenhändler Händler, int AusgewaehltesProdukt)
     {
         while(true)
@@ -269,14 +331,19 @@ class Simulation
             int VerkaufAnzahl;
             double Verkaufspreis;
 
+            //Checke ob UserInput ein Int ist
             if (Int32.TryParse(UserInput, out VerkaufAnzahl))
             {
+                //Checke ob Verkaufsmenge im gültigen Bereich liegt
                 if(VerkaufAnzahl <= Händler.GekaufteProdukte[AusgewaehltesProdukt -1 ].Menge && VerkaufAnzahl > 0)
                 {
+                    //Berechne Verkaufspreis und Buche auf den Kontostand 
                     Verkaufspreis = Convert.ToDouble(Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].BasisPreis) * 0.8 * VerkaufAnzahl; 
                     Händler.Kontostand += Convert.ToInt32(Verkaufspreis);
+                    //Berechne die übrige Menge
                     Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].Menge -= VerkaufAnzahl;
 
+                    //Wenn die Menge auf Null fällt, lösche das Produkt
                     if(Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].Menge == 0)
                     {
                         Händler.GekaufteProdukte.RemoveAt(AusgewaehltesProdukt - 1);
@@ -285,6 +352,7 @@ class Simulation
                     return;
                 }
             }
+            //Breche Kauf ab
             if(UserInput == "z")
             {
                 Console.WriteLine("Verkauf abgebrochen");
