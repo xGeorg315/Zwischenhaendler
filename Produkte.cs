@@ -8,7 +8,7 @@ class Produkte : ICloneable
     /// <summary>
     /// Klone das Objekt 
     /// </summary>
-    public object Klone()
+    public object Clone()
     {
         return this.MemberwiseClone();
     }

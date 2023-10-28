@@ -186,7 +186,7 @@ class Simulation
             if (Int32.TryParse(UserInput, out KaufAnzahl))
             {
                 //Clone das Produkt aus der Globalen Produktliste
-                Produkte GekauftesProdukt = (Produkte)Globals.VerfügbareProdukte[AusgewaehltesProdukt - 1].Klone();
+                Produkte GekauftesProdukt = (Produkte)Globals.VerfügbareProdukte[AusgewaehltesProdukt - 1].Clone();
                 //Passe die Menge anhand der Gekauften Menge an
                 GekauftesProdukt.Menge = KaufAnzahl;
                 //Buche Betrag ab und Füge das Produkt dem jeweiligen Händler hinzu

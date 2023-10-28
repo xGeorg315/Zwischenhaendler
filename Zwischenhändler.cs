@@ -11,6 +11,7 @@ class Zwischenhändler
     public int ID;                      //Für den Fall dass zwei Händler gleich heißen
     public int Kontostand = 0;
     public List<Produkte> GekaufteProdukte = new List<Produkte>();
+    public Lager Lager = new Lager();
 
     public Zwischenhändler()
     {
