@@ -90,18 +90,35 @@ class DateiLesen
                 Produkt.Haltbarkeit = IntHaltbarkeit;
               }
             }
+            else if (Zeile.Contains("MinProduktionsRate:"))
+            {
+              int IntProduktionsRate;
+              string ProduktionsRate = Zeile.Replace("Haltbarkeit: ", "");
+              if (Int32.TryParse(ProduktionsRate, out IntProduktionsRate)){
+                Produkt.MinProduktionsRate = IntProduktionsRate;
+              }
+            }
+            else if (Zeile.Contains("MaxProduktionsRate:"))
+            {
+              int IntProduktionsRate;
+              string ProduktionsRate = Zeile.Replace("Haltbarkeit: ", "");
+              if (Int32.TryParse(ProduktionsRate, out IntProduktionsRate)){
+                Produkt.MaxProduktionsRate = IntProduktionsRate;
+              }
+            }
             else if (Zeile.Contains("Basispreis:"))
             {
               int IntBasispreis;
-              string Haltbarkeit = Zeile.Replace("Basispreis: ", "");
-              if (Int32.TryParse(Haltbarkeit, out IntBasispreis)){
+              string BasisPreis = Zeile.Replace("Basispreis: ", "");
+              if (Int32.TryParse(BasisPreis, out IntBasispreis)){
                 Produkt.BasisPreis = IntBasispreis;
               }
                 //Speichere das Produkt in die Globale var und lege ein neues Produkt an
                 Globals.VerfügbareProdukte.Add(Produkt);
                 Produkt = new Produkte();
             }
-            else{
+            else
+            {
                 Console.WriteLine("Die Formatierung der YAML Datei scheint Fehlerhaft zu sein");
             }
         }
