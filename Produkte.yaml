@@ -1,9 +1,15 @@
 - Name: Gurke
+  MinProduktionsRate: -2
+  MaxProduktionsRate: 15
   Haltbarkeit: 21
   Basispreis: 5
 - Name: Aprikose
+  MinProduktionsRate: -5
+  MaxProduktionsRate: 8
   Haltbarkeit: 4
   Basispreis: 20
 - Name: Birne
+  MinProduktionsRate: -3
+  MaxProduktionsRate: 10
   Haltbarkeit: 8
   Basispreis: 10
