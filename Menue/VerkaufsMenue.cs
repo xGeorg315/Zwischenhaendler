@@ -1,4 +1,4 @@
-class VerkaufsMenue:Menue
+class VerkaufsMenue
 {
     /// <summary>
     /// Starte das Verkaufsmenü

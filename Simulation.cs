@@ -71,25 +71,18 @@ class Simulation
     {
         int AktuellerTag = 1;
         HauptMenue HauptMenue = new HauptMenue();
-        InitiereProdukte();
+        ProduktBerechnungen ProduktBerechnungen = new ProduktBerechnungen();
+        ProduktBerechnungen.InitiereProdukte();
         //Endlosschleife für die Simulation 
         while (true)
-        {                                                                                                            
+        {  
+            ProduktBerechnungen.BerechneMenge();                                                                                                          
             foreach (Zwischenhändler Händler in Globals.Händler)                                       
             {    
                 HauptMenue.MenueAurufen(Händler, AktuellerTag);                                                 
             }
             AktuellerTag++;
             VerschiebeHändlerAnordnung(1);
-        }
-    }
-
-    void InitiereProdukte()
-    {
-        foreach(Produkte Produkt in Globals.VerfügbareProdukte)
-        {
-            Produkt.BerechneMaxMenge();
-            Produkt.BerechneMenge();
         }
     }
 

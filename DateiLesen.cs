@@ -93,7 +93,7 @@ class DateiLesen
             else if (Zeile.Contains("MinProduktionsRate:"))
             {
               int IntProduktionsRate;
-              string ProduktionsRate = Zeile.Replace("Haltbarkeit: ", "");
+              string ProduktionsRate = Zeile.Replace("MinProduktionsRate: ", "");
               if (Int32.TryParse(ProduktionsRate, out IntProduktionsRate)){
                 Produkt.MinProduktionsRate = IntProduktionsRate;
               }
@@ -101,7 +101,7 @@ class DateiLesen
             else if (Zeile.Contains("MaxProduktionsRate:"))
             {
               int IntProduktionsRate;
-              string ProduktionsRate = Zeile.Replace("Haltbarkeit: ", "");
+              string ProduktionsRate = Zeile.Replace("MaxProduktionsRate: ", "");
               if (Int32.TryParse(ProduktionsRate, out IntProduktionsRate)){
                 Produkt.MaxProduktionsRate = IntProduktionsRate;
               }

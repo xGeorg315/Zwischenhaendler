@@ -37,3 +37,23 @@ class Produkte : ICloneable
         Menge -= Betrag;
     }
 }
+
+class ProduktBerechnungen
+{ 
+    public void InitiereProdukte()
+    {
+        foreach(Produkte Produkt in Globals.VerfügbareProdukte)
+        {
+            Produkt.BerechneMaxMenge();
+            Produkt.BerechneMenge();
+        }
+    }
+
+    public void BerechneMenge ()
+    {
+        foreach(Produkte Produkt in Globals.VerfügbareProdukte)
+        {
+            Produkt.BerechneMenge();
+        }
+    }
+}
