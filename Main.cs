@@ -15,7 +15,7 @@ namespace Zwischenhändler_1
            DateiLesen.LeseProdukte();
            
            Simulation start = new Simulation();
-           start.AnzahlHändler();
+           start.AbfrageAnzahlHändler();
            start.ErstelleHändler();
            start.StarteSimulation();
         }

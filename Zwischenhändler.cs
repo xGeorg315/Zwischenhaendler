@@ -15,7 +15,7 @@ class Zwischenhändler
 
     public Zwischenhändler()
     {
-        ID = Globals.counter + 1;
-        Globals.counter++;
+        ID = Globals.Zähler + 1;
+        Globals.Zähler++;
     }
 }

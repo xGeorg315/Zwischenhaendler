@@ -31,4 +31,12 @@ class Lager
     {
         this.Lagerbestand -= Lagerbestand;
     }
+
+    /// <summary>
+    /// Returned den Freien Lagerplatz
+    /// </summary>
+    public int getFreierPlatz ()
+    {
+        return MaxKapazität - Lagerbestand;
+    }
 }
