@@ -11,7 +11,7 @@ class Simulation
     /// <summary>
     /// Abfrage wie viele Händler teilnehmen
     /// </summary>
-    public void AnzahlHändler()
+    public void AbfrageAnzahlHändler()
     {
         Console.WriteLine("Wieviele Zwischenhändler nehmen teil?");
         //Wartet bis eine Zahl eingegeben wurde   
@@ -34,27 +34,11 @@ class Simulation
         for(int i = 1; i <= AnzahlZwischenhändler; i++)                                                 
         {                                   
             Zwischenhändler Händler = new Zwischenhändler();
-
             while(true)
-            {
-                //Frage Name des Händlers ab
-                string Ausgabe = "Name von Zwischenhändler " + i;                                       
-                Console.WriteLine(Ausgabe);
-                string NameHändler = Console.ReadLine()!;
-
-                //Frage Firma des Händlers ab
-                Ausgabe = "Firma von " + NameHändler;                                                   
-                Console.WriteLine(Ausgabe);
-                string NameFirma = Console.ReadLine()!;   
-                
-                if(!string.IsNullOrWhiteSpace(NameFirma) && !string.IsNullOrWhiteSpace(NameHändler))
-                {
-                    //Speichere Name in das angelegte Händler Objekt
-                    Händler.Name = NameHändler;            
-                    //Speichere Firma in das angelegte Händler Objekt                                    
-                    Händler.Firma = NameFirma;                                               
-                    break;
-                }
+            {     
+                string NameHändler = FrageNameAb(i);
+                string FirmaHändler = FrageFirmaAb(NameHändler);
+                if(SpeichereEingaben(Händler, NameHändler, FirmaHändler)) break;
                 Console.WriteLine("Einer der beiden Namen wurde nicht korrekt ausgefüllt");
                 Console.WriteLine("Versuche es nochmal");
             }
@@ -62,6 +46,46 @@ class Simulation
             Globals.Händler.Add(Händler);                                                       
             AuswahlSchwierigkeit(Händler);
         }
+    }
+
+    /// <summary>
+    /// Frage den Namen des Händler ab 
+    /// </summary>
+    public string FrageNameAb (int HändlerNummer)
+    {
+        //Frage Name des Händlers ab
+        string Ausgabe = "Name von Zwischenhändler " + HändlerNummer;                                       
+        Console.WriteLine(Ausgabe);
+        string NameHändler = Console.ReadLine()!;
+        return NameHändler;
+    }
+
+    /// <summary>
+    /// Frage die Firma des Händler ab 
+    /// </summary>
+    public string FrageFirmaAb(string HändlerName)
+    {
+        //Frage Firma des Händlers ab
+        string Ausgabe = "Firma von " + HändlerName;                                                   
+        Console.WriteLine(Ausgabe);
+        string NameFirma = Console.ReadLine()!; 
+        return NameFirma;
+    }
+
+    /// <summary>
+    /// Checke ob die Eingaben valide sind und speichere diese ggfs
+    /// </summary>
+    public bool SpeichereEingaben(Zwischenhändler Händler, string NameFirma, string NameHändler)
+    {
+        if(!string.IsNullOrWhiteSpace(NameFirma) && !string.IsNullOrWhiteSpace(NameHändler))
+        {
+            //Speichere Name in das angelegte Händler Objekt
+            Händler.Name = NameHändler;            
+            //Speichere Firma in das angelegte Händler Objekt                                    
+            Händler.Firma = NameFirma;                                               
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -76,10 +100,11 @@ class Simulation
         //Endlosschleife für die Simulation 
         while (true)
         {  
-            ProduktBerechnungen.BerechneMenge();                                                                                                          
+            ProduktBerechnungen.BerechneMenge();
+            ProduktBerechnungen.BerechneEinkaufsPreis();                                                                                                          
             foreach (Zwischenhändler Händler in Globals.Händler)                                       
             {    
-                HauptMenue.MenueAurufen(Händler, AktuellerTag);                                                 
+                HauptMenue.MenueAufrufen(Händler, AktuellerTag);                                                 
             }
             AktuellerTag++;
             VerschiebeHändlerAnordnung(1);
@@ -108,16 +133,31 @@ class Simulation
         const int EINFACH = 15000;
         const int MITTEL = 10000;
         const int SCHWER = 7000;
-        
-        Console.WriteLine("Bitte wählen sie die Schwierigkeit vom Händler:");
-        Console.WriteLine("a) Einfach - 15000Euro\nb) Mittel 10000Euro\nc) Schwer: 7000Euro");
-
         //Warte bis Händler einen Kontostand zugewiesen wird
         while(Händler.Kontostand == 0)
         {
+            ZeigeSchwierigkeiten();
             //Weise je nach Input geldbetrag zu 
-            string input = Console.ReadLine()!;
-            switch(input)
+            WeiseHändlerSchwierigkeitZu(Händler, EINFACH, MITTEL, SCHWER); 
+        }
+    }
+
+    /// <summary>
+    /// Printe die unterschiedlichen Schwierigkeiten
+    /// </summary>
+    public void ZeigeSchwierigkeiten ()
+    {
+        Console.WriteLine("Bitte wählen sie die Schwierigkeit vom Händler:");
+        Console.WriteLine("a) Einfach - 15000Euro\nb) Mittel 10000Euro\nc) Schwer: 7000Euro");
+    }
+
+    /// <summary>
+    /// Weise die ausgewähle Schwierigkeit den Händler zu
+    /// </summary>
+    public void WeiseHändlerSchwierigkeitZu (Zwischenhändler Händler, int EINFACH, int MITTEL, int SCHWER) 
+    {
+        string Eingabe = Console.ReadLine()!;
+            switch(Eingabe)
             {
                 case "a":
                     Händler.Kontostand = EINFACH;
@@ -133,7 +173,5 @@ class Simulation
                     Console.WriteLine("Probiere es nochmal:");
                     break;
             }
-        }
     }
-
 }

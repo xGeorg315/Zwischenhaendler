@@ -2,36 +2,57 @@ class HauptMenue
 {
     EinkaufsMenue EinkaufsMenue = new EinkaufsMenue();
     VerkaufsMenue VerkaufsMenue = new VerkaufsMenue();
+    LagerVergrößernMenue LagerVergrößernMenue = new LagerVergrößernMenue();
+
 
     /// <summary>
     /// Starte Hauptmenü
     /// </summary>
-    public void MenueAurufen(Zwischenhändler Händler, int AktuellerTag)
+    public void MenueAufrufen(Zwischenhändler Händler, int AktuellerTag)
     {
         //Warte auf gültigen Input
         while (true)
         {    
-            //Leite je nach Input Weiter oder beende die Runde
             MenueAnzeigen(Händler,AktuellerTag);                                                                                          
-            string input = Console.ReadLine()!;
-            if (input == "b")
+            string Eingabe = Console.ReadLine()!;
+            int MenueStatus = MenueLogik(Eingabe, Händler);
+            if(MenueStatus == 0)
             {
                 break;
-            } 
-            else if (input == "e") 
-            {
-                EinkaufsMenue.MenueAufrufen(Händler);
             }
-            else if(input == "v")
-            {
-                VerkaufsMenue.MenueAufrufen(Händler);
-            }
-            else
+            else if (MenueStatus == 2) 
             {
                 Console.WriteLine("Ungültige Eingabe :-(");
                 Console.WriteLine("Probiere es nochmal:");
             } 
         }
+    }
+
+    /// <summary>
+    /// Leite je nach Input in die verschiedenen Menues
+    /// </summary>
+    public int MenueLogik(string Eingabe, Zwischenhändler Händler)
+    {
+        if (Eingabe == "b")
+        {
+            return 0;
+        } 
+        else if (Eingabe == "e") 
+        {
+            EinkaufsMenue.MenueAufrufen(Händler);
+            return 1;
+        }
+        else if(Eingabe == "v")
+        {
+            VerkaufsMenue.MenueAufrufen(Händler);
+            return 1;
+        }
+        else if(Eingabe == "l")
+        {
+            LagerVergrößernMenue.MenueAufrufen(Händler);
+            return 1;
+        }
+        return 2;
     }
     
     /// <summary>
@@ -51,7 +72,8 @@ class HauptMenue
             AktuellerTag
             ));
         Console.WriteLine("e) Einkaufen");  
-        Console.WriteLine("v) Verkaufen"); 
+        Console.WriteLine("v) Verkaufen");
+        Console.WriteLine("l) Lager Vergrößern"); 
         Console.WriteLine("b) Runde beenden"); 
     }
 }
