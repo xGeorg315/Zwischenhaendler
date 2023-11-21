@@ -29,6 +29,10 @@ class Simulation
         StarteSimulation(ProduktBerechnungen, HauptMenue, Bankrott);
     }
 
+    /// <summary>
+    /// Simuliert die einzelnen Tager,  
+    /// Beendet diese wenn die Dauer vorbei ist oder nur noch ein Händler übrig ist
+    /// </summary>
     public void StarteSimulation(ProduktBerechnungen ProduktBerechnungen,HauptMenue HauptMenue, Bankrott Bankrott)
     {
         //Endlosschleife für die Simulation 
@@ -51,6 +55,9 @@ class Simulation
         BeeendeSimulation(Bankrott);
     }
 
+    /// <summary>
+    /// Beendet die Simulation und triggert die Ranglisten erstellung
+    /// </summary>
     public void BeeendeSimulation (Bankrott Bankrott)
     {
         Rangliste Rangliste = new Rangliste();

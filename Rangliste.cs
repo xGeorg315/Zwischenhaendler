@@ -1,9 +1,13 @@
 class Rangliste
 {
     public int TeilnehmerAnzahl = 0;
+
+    /// <summary>
+    /// Bubble Sort um Rangfolge zu ermitteln
+    /// </summary>
     public void ErmittleRangfolge(List<Zwischenhändler> Händler)
     {
-        Zwischenhändler temp = new Zwischenhändler();
+        Zwischenhändler Zwischenspeicher = new Zwischenhändler();
 
         for (int i = 0; i < Händler.Count(); i++)
         {
@@ -11,14 +15,18 @@ class Rangliste
             {
                 if (Händler[j].Kontostand < Händler[j + 1].Kontostand)
                 {
-                    temp = Händler[j + 1];
+                    Zwischenspeicher = Händler[j + 1];
                     Händler[j + 1] = Händler[j];
-                    Händler[j] = temp;
+                    Händler[j] = Zwischenspeicher;
                 }
             }
         }
     }
 
+    /// <summary>
+    /// Printe die Rangliste
+    /// Priorität: 1.Kontostand 2. Tag der Ausscheidung
+    /// </summary>
     public void ZeigeRangliste(Bankrott Bankrott)
     {
         int Platzierung = 1;

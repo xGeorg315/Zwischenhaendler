@@ -35,7 +35,7 @@ class Lager
     /// <summary>
     /// Returned den Freien Lagerplatz
     /// </summary>
-    public int getFreierPlatz ()
+    public int FreierPlatz ()
     {
         return MaxKapazität - Lagerbestand;
     }
@@ -45,7 +45,7 @@ class Lager
     /// </summary>
     public void VerrechneLagerkosten(Zwischenhändler Händler)
     {
-        int GesamtTagesKosten = Händler.Lager.getFreierPlatz() + Händler.Lager.Lagerbestand * 5;
+        int GesamtTagesKosten = Händler.Lager.FreierPlatz() + Händler.Lager.Lagerbestand * 5;
         Händler.Kontostand -= GesamtTagesKosten;
     }
 }

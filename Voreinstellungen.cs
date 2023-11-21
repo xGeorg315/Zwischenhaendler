@@ -16,7 +16,7 @@ class Voreinstellungen
         {                                   
             Zwischenhändler Händler = new Zwischenhändler();
             ErstelleHändler.ErstelleZwischenhändler(i, Händler);                                 
-            AuswahlSchwierigkeit.AuswahlSchwierigkeit(Händler);
+            AuswahlSchwierigkeit.AbfrageSchwierigkeit(Händler);
         }
         FrageSimulationDauerAb();
     }   
@@ -38,6 +38,9 @@ class Voreinstellungen
         }
     }
 
+    /// <summary>
+    /// Abfrage wie viele Tage die Simulation dauern soll
+    /// </summary>
     public void FrageSimulationDauerAb () 
     {
         //Wartet bis eine Zahl eingegeben wurde   
@@ -57,13 +60,13 @@ class Schwierigkeit
 {
     //Geldbeträge für die verschiedenen Schwierigkeiten
     const int EINFACH = 15000;
-    const int MITTEL = 10;
-    const int SCHWER = 7;
+    const int MITTEL = 10000;
+    const int SCHWER = 7000;
 
     /// <summary>
     /// Lässt den Händler eine von 3 verschiedenen Schwierigkeiten Auswählen
     /// </summary>
-    public void AuswahlSchwierigkeit (Zwischenhändler Händler)
+    public void AbfrageSchwierigkeit (Zwischenhändler Händler)
     {
         //Warte bis Händler einen Kontostand zugewiesen wird
         while(Händler.Kontostand == 0)
@@ -80,7 +83,7 @@ class Schwierigkeit
     public void ZeigeSchwierigkeiten ()
     {
         Console.WriteLine("Bitte wählen sie die Schwierigkeit vom Händler:");
-        Console.WriteLine("a) Einfach - 15000Euro\nb) Mittel 10000Euro\nc) Schwer: 7000Euro");
+        Console.WriteLine("a) Einfach - 15000Euro\nb) Mittel - 10000Euro\nc) Schwer - 7000Euro");
     }
 
     /// <summary>
