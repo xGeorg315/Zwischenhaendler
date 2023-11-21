@@ -17,7 +17,7 @@ class VerkaufsMenue
         //Checke ob Produkte zum Verkauf sind 
         if(Händler.GekaufteProdukte.Count() == 0)
         {
-            Console.WriteLine("Keine Produkte gekauft");
+            Console.WriteLine("Keine Produkte gekauft\n");
             return false;
         }
         return true;
@@ -42,7 +42,7 @@ class VerkaufsMenue
             
             if(UserInput == "z")
             {
-                Console.WriteLine("Verkauf abgebrochen");
+                Console.WriteLine("Verkauf abgebrochen\n");
                 return;
             }
         }
@@ -93,7 +93,7 @@ class VerkaufsMenue
                 i, 
                 Produkt.ProduktName,
                 Produkt.Haltbarkeit, 
-                Produkt.EinkaufsPreis * 0.8));
+                Convert.ToInt32(Produkt.EinkaufsPreis * 0.8)));
             i++;
         }
         Console.WriteLine("z) Zurück");
@@ -118,7 +118,7 @@ class VerkaufsMenue
             //Breche Kauf ab
             if(UserInput == "z")
             {
-                Console.WriteLine("Verkauf abgebrochen");
+                Console.WriteLine("Verkauf abgebrochen\n");
                 return;
             }
         }
@@ -144,7 +144,7 @@ class VerkaufsMenue
             {
                 Händler.GekaufteProdukte.RemoveAt(AusgewaehltesProdukt - 1);
             }
-            Console.WriteLine("Verkauf erfolgreich");
+            Console.WriteLine("Verkauf erfolgreich\n");
         }
     }
 }

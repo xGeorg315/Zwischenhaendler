@@ -14,10 +14,11 @@ namespace Zwischenhändler_1
            DateiLesen DateiLesen = new DateiLesen();
            DateiLesen.LeseProdukte();
            
-           Simulation start = new Simulation();
-           start.AbfrageAnzahlHändler();
-           start.ErstelleHändler();
-           start.StarteSimulation();
+           Voreinstellungen Voreinstellungen = new Voreinstellungen();
+           Voreinstellungen.StelleSimulationEin();
+           Simulation Simulation = new Simulation(Voreinstellungen.LetzterTag, Voreinstellungen.AnzahlZwischenhändler);
+           Simulation.InitiereSimulation();
+
         }
     }
 }

@@ -39,4 +39,13 @@ class Lager
     {
         return MaxKapazität - Lagerbestand;
     }
+
+    /// <summary>
+    /// Berechnet die Lagerkosten für den Tag und zieht diese vom Kontostand ab
+    /// </summary>
+    public void VerrechneLagerkosten(Zwischenhändler Händler)
+    {
+        int GesamtTagesKosten = Händler.Lager.getFreierPlatz() + Händler.Lager.Lagerbestand * 5;
+        Händler.Kontostand -= GesamtTagesKosten;
+    }
 }

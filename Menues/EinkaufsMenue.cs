@@ -39,6 +39,7 @@ class EinkaufsMenue
             Ausgabe = "Wie viele vom Produkt ({0}) möchten Sie kaufen";
             Console.WriteLine(string.Format(Ausgabe, AusgewähltesProdukt.ProduktName));
             MenueLogik(Händler, AusgewähltesProdukt, ProduktNummer);
+            return;
         }
         Ausgabe = "Es gibt kein Produkt mit der Nummer {0}";
         Console.WriteLine (string.Format(Ausgabe, ProduktNummer));   
@@ -93,10 +94,10 @@ class EinkaufsMenue
             //Breche Kauf ab 
             if(UserInput == "z")
             {
-                Console.WriteLine("Kauf abgebrochen");
+                Console.WriteLine("Kauf abgebrochen\n");
                 return;
             }
-            Console.WriteLine("Keine gültige eingabe, probieren Sie es erneut oder brechen sie mit \"Z\" ab ");
+            Console.WriteLine("Keine gültige eingabe, probieren Sie es erneut oder brechen sie mit \"Z\" ab\n");
         }
     }
 
@@ -108,20 +109,20 @@ class EinkaufsMenue
         //Checke ob genug Platz in Lager
         if(KaufAnzahl > Händler.Lager.getFreierPlatz())
         {
-            Console.WriteLine("Fehler beim Kauf, nicht genügend Platz im Lager");
+            Console.WriteLine("Fehler beim Kauf, nicht genügend Platz im Lager\n");
             return false;
         }
         //Checke ob genug Produkte Verfügbar sind
         if(KaufAnzahl > AusgewaehltesProdukt.Menge)
         { 
-            string Ausgabe = "Fehler beim Kauf, nicht genügend {0} Verfügbar";
+            string Ausgabe = "Fehler beim Kauf, nicht genügend {0} Verfügbar\n";
             Console.WriteLine(string.Format(Ausgabe, AusgewaehltesProdukt.ProduktName));
             return false;
         }
         //Checke ob Genug Geld vorhanden
         if (NeuerKontostand < 0)
         {
-            Console.WriteLine("Fehler beim Kauf, nicht genug Geld");
+            Console.WriteLine("Fehler beim Kauf, nicht genug Geld\n");
             return false;
         }
             return true;
@@ -142,7 +143,7 @@ class EinkaufsMenue
         Globals.VerfügbareProdukte[ProduktNummer - 1].SubtrahiereMenge(KaufAnzahl);
         //Addiere Menge in den Bestand 
         Händler.Lager.Lagerbestand += AusgewaehltesProdukt.Menge;
-        Console.WriteLine("Kauf erfolgreich");
+        Console.WriteLine("Kauf erfolgreich\n");
     }
 
     /// <summary>
