@@ -38,7 +38,7 @@ class VerkaufsMenue
             if (Int32.TryParse(UserInput, out AusgewaehltesProdukt))
             {
                 AbfrageVerkaufsAnzahl(Händler, AusgewaehltesProdukt);
-                MenueLogik(Händler,AusgewaehltesProdukt);
+                UntermenueWeiterleitung(Händler,AusgewaehltesProdukt);
             }
             
             if(UserInput == "z")
@@ -75,7 +75,7 @@ class VerkaufsMenue
     /// <summary>
     /// Funktion um Verkauf abzuschließen
     /// </summary>
-    public void MenueLogik(Zwischenhändler Händler, int AusgewaehltesProdukt)
+    public void UntermenueWeiterleitung(Zwischenhändler Händler, int AusgewaehltesProdukt)
     {
         while(true)
         {

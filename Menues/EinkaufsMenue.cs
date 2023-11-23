@@ -58,7 +58,7 @@ class EinkaufsMenue
     /// <summary>
     /// Funktion um die Menue Logik zu handeln
     /// </summary>
-    public void MenueLogik(Zwischenhändler Händler, Produkte AusgewaehltesProdukt, int ProduktNummer)
+    public void UntermenueWeiterleitung(Zwischenhändler Händler, Produkte AusgewaehltesProdukt, int ProduktNummer)
     {
         //Warte auf gültigen Input 
         while(true)
@@ -95,7 +95,7 @@ class EinkaufsMenue
             Produkte AusgewähltesProdukt = (Produkte)Globals.VerfügbareProdukte[ProduktNummer - 1].Clone();
             Ausgabe = "Wie viele vom Produkt ({0}) möchten Sie kaufen";
             Console.WriteLine(string.Format(Ausgabe, AusgewähltesProdukt.ProduktName));
-            MenueLogik(Händler, AusgewähltesProdukt, ProduktNummer);
+            UntermenueWeiterleitung(Händler, AusgewähltesProdukt, ProduktNummer);
             return;
         }
         Ausgabe = "Es gibt kein Produkt mit der Nummer {0}";

@@ -18,5 +18,4 @@ class Produkte : ICloneable
     {
         return this.MemberwiseClone();
     }
-
 }
