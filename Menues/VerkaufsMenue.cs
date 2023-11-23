@@ -17,7 +17,7 @@ class VerkaufsMenue
         //Checke ob Produkte zum Verkauf sind 
         if(Händler.GekaufteProdukte.Count() == 0)
         {
-            Console.WriteLine("Keine Produkte gekauft");
+            Console.WriteLine("Keine Produkte gekauft\n");
             return false;
         }
         return true;
@@ -37,43 +37,16 @@ class VerkaufsMenue
             //Checke ob User Input ein Int ist
             if (Int32.TryParse(UserInput, out AusgewaehltesProdukt))
             {
-                BeginneKaufProzess(Händler, AusgewaehltesProdukt);
+                AbfrageVerkaufsAnzahl(Händler, AusgewaehltesProdukt);
+                MenueLogik(Händler,AusgewaehltesProdukt);
             }
             
             if(UserInput == "z")
             {
-                Console.WriteLine("Verkauf abgebrochen");
+                Console.WriteLine("Verkauf abgebrochen\n");
                 return;
             }
         }
-    }
-
-    /// <summary>
-    /// Beginnt nach der Überprüfung der Verkaufsprozess
-    /// </summary>
-    public void BeginneKaufProzess(Zwischenhändler Händler, int AusgewaehltesProdukt)
-    {
-        if(!ÜberprüfeVerkaufsRegeln(Händler, AusgewaehltesProdukt)) return;
-        MenueLogik(Händler, AusgewaehltesProdukt);
-    }
-
-    /// <summary>
-    /// Überprüft ob die Regeln für den Verkauf eingehalten werden
-    /// </summary>
-    public bool ÜberprüfeVerkaufsRegeln (Zwischenhändler Händler, int AusgewaehltesProdukt)
-    {
-        //Checke ob UserInput in der gültigen Range liegt
-        int GesamtAnzahlProdukte = Globals.VerfügbareProdukte.Count();
-        if(AusgewaehltesProdukt <= GesamtAnzahlProdukte && AusgewaehltesProdukt > 0)
-        {
-            string Ausgabe = "Wie viele vom Produkt ({0}) möchten Sie verkaufen (max: {1})";
-            Console.WriteLine(string.Format(
-                Ausgabe, 
-                Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].ProduktName, 
-                Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].Menge));
-            return true;
-        }   
-        return false;
     }
 
     /// <summary>
@@ -93,7 +66,7 @@ class VerkaufsMenue
                 i, 
                 Produkt.ProduktName,
                 Produkt.Haltbarkeit, 
-                Produkt.EinkaufsPreis * 0.8));
+                Convert.ToInt32(Produkt.EinkaufsPreis * 0.8)));
             i++;
         }
         Console.WriteLine("z) Zurück");
@@ -111,40 +84,36 @@ class VerkaufsMenue
             //Checke ob UserInput ein Int ist
             if (Int32.TryParse(UserInput, out VerkaufAnzahl))
             {
-                WickleKaufAb(Händler, AusgewaehltesProdukt, VerkaufAnzahl);
+                Verkaufen Verkauf = new Verkaufen();
+                Verkauf.BeginneVerkaufProzess(Händler, AusgewaehltesProdukt, VerkaufAnzahl);
                 return;
             }
             
             //Breche Kauf ab
             if(UserInput == "z")
             {
-                Console.WriteLine("Verkauf abgebrochen");
+                Console.WriteLine("Verkauf abgebrochen\n");
                 return;
             }
         }
     }
-    
-    /// <summary>
-    /// Passt alle Parameter an die sich durch den Kauf ändern und Speichert alle neuen Werte
-    /// </summary>
-    public void WickleKaufAb(Zwischenhändler Händler, int AusgewaehltesProdukt, int VerkaufAnzahl)
-    {
-        double Verkaufspreis;
-        //Checke ob Verkaufsmenge im gültigen Bereich liegt
-        if(VerkaufAnzahl <= Händler.GekaufteProdukte[AusgewaehltesProdukt -1 ].Menge && VerkaufAnzahl > 0)
-        {
-            //Berechne Verkaufspreis und Buche auf den Kontostand 
-            Verkaufspreis = Convert.ToDouble(Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].BasisPreis) * 0.8 * VerkaufAnzahl; 
-            Händler.Kontostand += Convert.ToInt32(Verkaufspreis);
-            //Berechne die übrige Menge
-            Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].Menge -= VerkaufAnzahl;
 
-            //Wenn die Menge auf Null fällt, lösche das Produkt
-            if(Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].Menge == 0)
-            {
-                Händler.GekaufteProdukte.RemoveAt(AusgewaehltesProdukt - 1);
-            }
-            Console.WriteLine("Verkauf erfolgreich");
-        }
+    /// <summary>
+    /// Überprüft ob die Regeln für den Verkauf eingehalten werden
+    /// </summary>
+    public bool AbfrageVerkaufsAnzahl(Zwischenhändler Händler, int AusgewaehltesProdukt)
+    {
+        //Checke ob UserInput in der gültigen Range liegt
+        int GesamtAnzahlProdukte = Globals.VerfügbareProdukte.Count();
+        if(AusgewaehltesProdukt <= GesamtAnzahlProdukte && AusgewaehltesProdukt > 0)
+        {
+            string Ausgabe = "Wie viele vom Produkt ({0}) möchten Sie verkaufen (max: {1})";
+            Console.WriteLine(string.Format(
+                Ausgabe, 
+                Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].ProduktName, 
+                Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].Menge));
+            return true;
+        }   
+        return false;
     }
 }

@@ -12,6 +12,7 @@ class Zwischenhändler
     public int Kontostand = 0;
     public List<Produkte> GekaufteProdukte = new List<Produkte>();
     public Lager Lager = new Lager();
+    public int TagAusscheidung = 0; 
 
     public Zwischenhändler()
     {

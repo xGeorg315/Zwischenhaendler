@@ -23,7 +23,7 @@ class HauptMenue
             else if (MenueStatus == 2) 
             {
                 Console.WriteLine("Ungültige Eingabe :-(");
-                Console.WriteLine("Probiere es nochmal:");
+                Console.WriteLine("Probiere es nochmal:\n");
             } 
         }
     }
