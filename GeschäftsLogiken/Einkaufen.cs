@@ -44,7 +44,7 @@ class Einkaufen
         //Addiere Menge in den Bestand 
         Händler.Lager.Lagerbestand += AusgewaehltesProdukt.Menge;
         //Füge die Ausgaben zu den Tagesausgaben hinzu
-        int EinkaufsPreis = (int)AusgewaehltesProdukt.BasisPreis * KaufAnzahl;
+        int EinkaufsPreis = (int)AusgewaehltesProdukt.EinkaufsPreis * KaufAnzahl;
         Händler.Tagesbericht.AddiereAusgaben(EinkaufsPreis);
         Console.WriteLine("Kauf erfolgreich\n");
     }
@@ -55,7 +55,7 @@ class Einkaufen
     public bool BeginneKaufProzess(Zwischenhändler Händler, Produkte AusgewaehltesProdukt, int KaufAnzahl, int ProduktNummer)
     {
         //Berechne Vorraussichtlichen Kontostand
-        int NeuerKontostand = Händler.Kontostand - (int)AusgewaehltesProdukt.BasisPreis * KaufAnzahl; 
+        int NeuerKontostand = Händler.Kontostand - (int)AusgewaehltesProdukt.EinkaufsPreis * KaufAnzahl; 
         //Checke ob der Kauf den Regeln und Limits entspricht
         if(!ValidiereKauf(KaufAnzahl, Händler, AusgewaehltesProdukt, NeuerKontostand)) return false;
         //Wickle den Kauf ab

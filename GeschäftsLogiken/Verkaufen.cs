@@ -10,7 +10,7 @@ class Verkaufen
         if(VerkaufAnzahl <= Händler.GekaufteProdukte[AusgewaehltesProdukt -1 ].Menge && VerkaufAnzahl > 0)
         {
             //Berechne Verkaufspreis und Buche auf den Kontostand 
-            Verkaufspreis = Convert.ToDouble(Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].BasisPreis) * 0.8 * VerkaufAnzahl; 
+            Verkaufspreis = Convert.ToDouble(Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].EinkaufsPreis) * 0.8 * VerkaufAnzahl; 
             Händler.Kontostand += Convert.ToInt32(Verkaufspreis);
             //Berechne die übrige Menge
             Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].Menge -= VerkaufAnzahl;
