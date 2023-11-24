@@ -6,7 +6,7 @@ class LagerVergrößern
     public bool WickleKaufAb (Zwischenhändler Händler, int KaufAnzahl)
     {
         int NeuerKontostand = Händler.Kontostand - KaufAnzahl * 50;
-        if (!ValidiereKauf()) return false;
+        if (!ValidiereKauf(Händler, KaufAnzahl, NeuerKontostand)) return false;
         Händler.Kontostand = NeuerKontostand;
         Händler.Lager.MaxKapazität += KaufAnzahl;
         Console.WriteLine("Kauf erfolgreich");

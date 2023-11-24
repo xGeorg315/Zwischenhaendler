@@ -13,6 +13,7 @@ class Zwischenhändler
     public List<Produkte> GekaufteProdukte = new List<Produkte>();
     public Lager Lager = new Lager();
     public int TagAusscheidung = 0; 
+    public Tagesbericht Tagesbericht = new Tagesbericht();
 
     public Zwischenhändler()
     {

@@ -43,6 +43,9 @@ class Einkaufen
         Globals.VerfügbareProdukte[ProduktNummer - 1].Menge -= KaufAnzahl;
         //Addiere Menge in den Bestand 
         Händler.Lager.Lagerbestand += AusgewaehltesProdukt.Menge;
+        //Füge die Ausgaben zu den Tagesausgaben hinzu
+        int EinkaufsPreis = (int)AusgewaehltesProdukt.BasisPreis * KaufAnzahl;
+        Händler.Tagesbericht.AddiereAusgaben(EinkaufsPreis);
         Console.WriteLine("Kauf erfolgreich\n");
     }
 
