@@ -14,7 +14,8 @@ class Verkaufen
             Händler.Kontostand += Convert.ToInt32(Verkaufspreis);
             //Berechne die übrige Menge
             Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].Menge -= VerkaufAnzahl;
-
+            //Füge die Einnahmen hinzu
+            Händler.Tagesbericht.AddiereEinnahmen(Convert.ToInt32(Verkaufspreis));
             //Wenn die Menge auf Null fällt, lösche das Produkt
             if(Händler.GekaufteProdukte[AusgewaehltesProdukt - 1].Menge == 0)
             {

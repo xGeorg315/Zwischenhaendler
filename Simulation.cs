@@ -40,21 +40,25 @@ class Simulation
         {  
             ProduktBerechnungen.BerechneMenge();
             ProduktBerechnungen.BerechneEinkaufsPreis();                                                                                                          
-            foreach (Zwischenhändler Händler in Globals.Händler)                                       
-            {    
-                Händler.Lager.VerrechneLagerkosten(Händler);
-                if(!Bankrott.ÜberprüfeBankrott(Händler, AktuellerTag))
-                {
-                    HauptMenue.MenueAufrufen(Händler, AktuellerTag);    
-                }                                                
-            }
+            HändlerAufruf(Bankrott, HauptMenue);
             AktuellerTag++;
             VerschiebeHändlerAnordnung(1);
             Bankrott.LöscheAusgeschiedeneHändler();
         }
         BeeendeSimulation(Bankrott);
     }
-
+    public void HändlerAufruf(Bankrott Bankrott, HauptMenue HauptMenue)
+    {
+        foreach (Zwischenhändler Händler in Globals.Händler)                                       
+        {    
+            Händler.Lager.VerrechneLagerkosten(Händler, AktuellerTag);
+            if(!Bankrott.ÜberprüfeBankrott(Händler, AktuellerTag))
+            {
+                Händler.Tagesbericht.ErstelleBericht(Händler, AktuellerTag);
+                HauptMenue.MenueAufrufen(Händler, AktuellerTag);    
+            }                                                
+        }
+    }
     /// <summary>
     /// Beendet die Simulation und triggert die Ranglisten erstellung
     /// </summary>
