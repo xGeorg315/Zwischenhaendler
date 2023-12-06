@@ -1,0 +1,14 @@
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\obj\Debug\net7.0\Zwischenhaendler.Sim.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\obj\Debug\net7.0\Zwischenhaendler.Sim.AssemblyInfoInputs.cache
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\obj\Debug\net7.0\Zwischenhaendler.Sim.AssemblyInfo.cs
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\obj\Debug\net7.0\Zwischenhaendler.Sim.csproj.CoreCompileInputs.cache
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\bin\Debug\net7.0\Zwischenhaendler.Sim.exe
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\bin\Debug\net7.0\Zwischenhaendler.Sim.deps.json
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\bin\Debug\net7.0\Zwischenhaendler.Sim.runtimeconfig.json
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\bin\Debug\net7.0\Zwischenhaendler.Sim.dll
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\bin\Debug\net7.0\Zwischenhaendler.Sim.pdb
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\obj\Debug\net7.0\Zwischenhaendler.Sim.dll
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\obj\Debug\net7.0\refint\Zwischenhaendler.Sim.dll
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\obj\Debug\net7.0\Zwischenhaendler.Sim.pdb
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\obj\Debug\net7.0\Zwischenhaendler.Sim.genruntimeconfig.cache
+C:\Users\georg\OneDrive\Dokumente\GitHub\Zwischenhaendler\Zwischenhaendler.Sim\obj\Debug\net7.0\ref\Zwischenhaendler.Sim.dll
