@@ -20,6 +20,7 @@ namespace Zwischenhaendler.Sim
         public Tagesbericht Tagesbericht = new Tagesbericht();
         public Rabatt Rabatt = new Rabatt();
         public List <double> EinkaufsRabatte= new List<double>(new double[Globals.VerfügbareProdukte.Count()]);
+        public Kredit Kredit = new Kredit();
 
         public Zwischenhändler()
         {

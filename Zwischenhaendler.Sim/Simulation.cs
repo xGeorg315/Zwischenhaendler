@@ -54,6 +54,7 @@ public class Simulation
         foreach (Zwischenhändler Händler in Globals.Händler)                                       
         {    
             Händler.Lager.VerrechneLagerkosten(Händler, AktuellerTag);
+            Händler.Kredit.ZahleKreditZurueck();
             if(!Bankrott.ÜberprüfeBankrott(Händler, AktuellerTag))
             {
                 Händler.Tagesbericht.ErstelleBericht(Händler, AktuellerTag);
