@@ -6,6 +6,10 @@ using GlobalsSim;
 public class Rabatt
 {
     public int RabattProzent = 0;
+
+    /// <summary>
+    /// Berechnet ob dem Händler einen Rabatt zusteht
+    /// </summary>
     public void BerechneRabatt(Zwischenhändler Händler)
     {
         int Menge = 0;
@@ -19,6 +23,9 @@ public class Rabatt
         }
     }
 
+    /// <summary>
+    /// Zählt wv Produkte der Händler eines bestimmten Produktes gekauft hat
+    /// </summary>
     public int ZähleProdukt(Zwischenhändler Händler, Produkte ZuZählendesProdukt)
     {
         int Menge = 0;
@@ -32,6 +39,9 @@ public class Rabatt
         return Menge;
     }
 
+    /// <summary>
+    /// Aktualisiert den Rabatt des Händlers
+    /// </summary>
     public void RabattAktualisieren (int Menge)
     {
         switch (Menge)
@@ -51,15 +61,5 @@ public class Rabatt
             default:
                 break;
         }
-    }
-
-    public string GebeRabattAus (Zwischenhändler Händler, int ProduktNummer)
-    {
-        double EinkaufsRabatt = Händler.EinkaufsRabatte[ProduktNummer];
-        double EinkaufsPreis = Globals.VerfügbareProdukte[ProduktNummer].EinkaufsPreis;
-        string Ausgabe = "Ihr Neuer Preis: {0}$ (Rabatt: {1}%)";
-        double NeuerPreis = EinkaufsPreis - (EinkaufsPreis * (EinkaufsRabatt / 100));
-        if(EinkaufsRabatt == 0) return "";
-        return string.Format(Ausgabe, Math.Round(NeuerPreis,2),EinkaufsRabatt);
     }
 }

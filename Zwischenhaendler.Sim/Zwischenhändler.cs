@@ -5,6 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using GlobalsSim;
 using ProdukteSim;
+using KreditSim;
 
 namespace Zwischenhaendler.Sim
 {

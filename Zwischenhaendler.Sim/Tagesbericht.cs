@@ -6,6 +6,7 @@ public class Tagesbericht
     double TagesEinnahmen;
     double Kontostand;
     double Lagerkosten;
+    double KreditRueckzahlung;
 
     /// <summary>
     /// Addiere einen Verkaufswert auf die Tageseinnahmen
@@ -18,9 +19,10 @@ public class Tagesbericht
     /// <summary>
     /// Addiere einen Einkaufswert auf die Tageseinnahmen
     /// </summary>
-    public void AddiereAusgaben (double EinkaufsWert)
+    public void AddiereAusgaben (double EinkaufsWert, double KreditRueckzahlung = 0)
     {
         TagesAusgaben += EinkaufsWert;
+        this.KreditRueckzahlung = KreditRueckzahlung;
     }
 
     /// <summary>
@@ -77,6 +79,9 @@ public class Tagesbericht
 
         Ausgabe = "Lagerkosten:             - {0}";
         Console.WriteLine(string.Format(Ausgabe, Math.Round(Lagerkosten,2)));
+
+        Ausgabe = "Kredit Rückzahlung:      - {0}";
+        Console.WriteLine(string.Format(Ausgabe, Math.Round(KreditRueckzahlung,2)));
 
         Ausgabe = "Einnahmen:               + {0}";
         Console.WriteLine(string.Format(Ausgabe, Math.Round(TagesEinnahmen,2)));

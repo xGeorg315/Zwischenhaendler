@@ -1,14 +1,15 @@
+using Zwischenhaendler.Sim;
 namespace KreditMenueSim
 {
     class KreditMenue
     {
-        const double BETRAEGE = [5000, 10000, 15000];
-        const double ZINSSAETZE = [3, 5, 8];
+        readonly double[] BETRAEGE = {5000, 10000, 15000};
+        readonly double[] ZINSSAETZE = {3, 5, 8};
 
         /// <summary>
         /// Startet das Kreditsmenü
         /// </summary>
-        public void MenueAufrufen(Zwischenhaendler Haendler)
+        public void MenueAufrufen(Zwischenhändler Haendler)
         {
             while(true)
             {
@@ -21,13 +22,25 @@ namespace KreditMenueSim
                 //Checke ob UserInput ein Int ist 
                 if (Int32.TryParse(Eingabe, out KreditAuswahl))
                 {
-                    //Überprüfe ob Input gültig ist
-                    if (KreditAuswahl <= BETRAEGE.count())
-                    {
-                        Haendler.Kredit.KreditAufnehmen(BETRAEGE[KreditAuswahl - 1], ZINSSAETZE[KreditAuswahl - 1]);
-                    }
+                    StarteKreditAufnahme(Haendler, KreditAuswahl);
+                    return;
                 }
-                console.WriteLine("ungültige Eingabe");
+                Console.WriteLine("ungültige Eingabe");
+            }
+        }
+
+        public void StarteKreditAufnahme (Zwischenhändler Haendler, int KreditAuswahl)
+        {
+            //Überprüfe ob Input gültig ist
+            if (KreditAuswahl <= BETRAEGE.Count())
+            {
+                if(Haendler.Kredit.KreditAufnehmen(Haendler, BETRAEGE[KreditAuswahl - 1], ZINSSAETZE[KreditAuswahl - 1]))
+                {           
+                    Console.WriteLine("Kredit aufgenommen");
+                    return;
+                }
+                Console.WriteLine("Nicht Kreditwürdig");
+                return;
             }
         }
 
@@ -37,14 +50,14 @@ namespace KreditMenueSim
         public void MenueAnzeigen()
         {
             int i = 1;
-            console.WriteLine("Wählen Sie den gewünschten Betrag aus");
+            Console.WriteLine("Wählen Sie den gewünschten Betrag aus");
             foreach (double Betrag in BETRAEGE)
             {
                 string Ausgabe = "{0}) ${1} mit {2}% Zinsen";
-                console.WriteLine(string.Format(Ausgabe, i, Betrag, ZINSSAETZE[i - 1]));
+                Console.WriteLine(string.Format(Ausgabe, i, Betrag, ZINSSAETZE[i - 1]));
                 i++;
             }
-            console.WriteLine("z) Zurück");
+            Console.WriteLine("z) Zurück");
         }
     }
 }

@@ -11,13 +11,14 @@ namespace Einkaufen.Test
     [TestClass]
     public class EinkaufsTests
     {
-        private readonly EinkaufenKlasse einkaufen;
-        private readonly Zwischenhändler zwischenhaendler;
-        private readonly Produkte produkt;
-        private Produkte GekauftesProdukt;
+        private EinkaufenKlasse einkaufen = new EinkaufenKlasse();
+        private Zwischenhändler zwischenhaendler = new Zwischenhändler();
+        private Produkte produkt = new Produkte();
+        private Produkte GekauftesProdukt = new Produkte();
         private int StartKontostand = 100;
 
-        public EinkaufsTests()
+        [TestInitialize()]
+        public void TestInitialize()
         {
             einkaufen = new EinkaufenKlasse();
             produkt = new Produkte();
@@ -35,6 +36,7 @@ namespace Einkaufen.Test
             produkt.ProduktName = "TestProdukt";
             produkt.EinkaufsPreis = Einkaufspreis;
             produkt.Menge = Menge;
+            Globals.VerfügbareProdukte.Clear();
             Globals.VerfügbareProdukte.Add(produkt);
             GekauftesProdukt = (Produkte)produkt.Clone();
             
@@ -124,6 +126,7 @@ namespace Einkaufen.Test
         /// Testet ob der Kontostand nach einem nicht erfolgreichen Kauf unberührt bleibt
         /// </summary>
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         [DataRow(10,1)]
         [DataRow(15,1)]
         [DataRow(20,1)]
@@ -144,6 +147,7 @@ namespace Einkaufen.Test
         /// Testet ob die Marktverfügbarkeit nach einem nicht erfolgreichen Kauf unberührt bleibt
         /// </summary>
         [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
         [DataRow(11,1)]
         [DataRow(15,1)]
         [DataRow(20,1)]

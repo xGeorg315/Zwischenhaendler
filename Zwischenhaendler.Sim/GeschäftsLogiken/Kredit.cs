@@ -1,42 +1,45 @@
+using Zwischenhaendler.Sim;
 
 namespace KreditSim
 {
-    class Kredit
+    public class Kredit
     {
-        public int KreditAufgenommenTag = 0;
+        public int KreditAufgenommenTag = 1;
         public bool KreditAufgenommen = false;
         public double KreditBetrag = 0;
         public double ZinssatzProzent = 0;
-        public int RückzahlTag = 7
+        public int RückzahlTag = 7;
 
-        public bool CheckeKreditwürdigkeit(Zwischenhaendler Haendler)
+        public bool CheckeKreditwürdigkeit(Zwischenhändler Haendler)
         {   
-            if (Haendler.KreditAufgenommen) return true;
+            if (!KreditAufgenommen) return true;
             return false; 
         }
-        public void ZahleKreditZurueck(Zwischenhaendler Haendler)
+        public bool ZahleKreditZurueck(Zwischenhändler Haendler)
         {
-            if(!KreditAufgenommen) return;
+            if(!KreditAufgenommen) return false;
 
             if(KreditAufgenommenTag == RückzahlTag)
             {
-                Haendler.Kontostand -= (KreditBetrag + (KreditBetrag * (1/ZinssatzProzent)); 
+                double Betrag = KreditBetrag + (KreditBetrag * (1/ZinssatzProzent)); 
+                Haendler.Kontostand -= Betrag;
                 KreditBezahlt();
-                return     
+                Haendler.Tagesbericht.AddiereAusgaben(0, Betrag);
+                return true;     
             }
 
             KreditAufgenommenTag++;
+            return false;
         }
         public void KreditBezahlt()
         {
             KreditAufgenommen = false;
-            KreditAufgenommenTag = 0;
+            KreditAufgenommenTag = 1;
         }
-        public bool KreditAufnehmen(double Betrag, double ZinssatzProzent)
+        public bool KreditAufnehmen(Zwischenhändler Haendler, double Betrag, double ZinssatzProzent)
         {
-            if(!CheckeKreditwürdigkeit())
+            if(!CheckeKreditwürdigkeit(Haendler))
             {
-              console.WriteLine("Sie sind aktuell nicht Kreditwürdig");
               return false;   
             }
 

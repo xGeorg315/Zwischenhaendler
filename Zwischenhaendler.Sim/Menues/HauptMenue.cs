@@ -1,9 +1,11 @@
 using Zwischenhaendler.Sim;
+using KreditMenueSim;
 public class HauptMenue
 {
     EinkaufsMenue EinkaufsMenue = new EinkaufsMenue();
     VerkaufsMenue VerkaufsMenue = new VerkaufsMenue();
     LagerVergrößernMenue LagerVergrößernMenue = new LagerVergrößernMenue();
+    KreditMenue KreditMenue = new KreditMenue();
 
 
     /// <summary>
@@ -53,6 +55,11 @@ public class HauptMenue
             LagerVergrößernMenue.MenueAufrufen(Händler);
             return 1;
         }
+        else if(Eingabe == "k")
+        {
+            KreditMenue.MenueAufrufen(Händler);
+            return 1;
+        }
         return 2;
     }
     
@@ -75,6 +82,7 @@ public class HauptMenue
         Console.WriteLine("e) Einkaufen");  
         Console.WriteLine("v) Verkaufen");
         Console.WriteLine("l) Lager Vergrößern"); 
+        Console.WriteLine("k) Kredit aufnehmen"); 
         Console.WriteLine("b) Runde beenden"); 
     }
 }

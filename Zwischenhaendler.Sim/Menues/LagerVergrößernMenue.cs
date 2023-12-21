@@ -1,4 +1,5 @@
 using Zwischenhaendler.Sim;
+using LagerVergrößernSim;
 public class LagerVergrößernMenue
 {
     /// <summary>
@@ -46,8 +47,7 @@ public class LagerVergrößernMenue
             //Checke ob UserInput ein Int ist 
             if (Int32.TryParse(UserInput, out KaufAnzahl))
             {
-                LagerVergrößern LagerVergrößern = new LagerVergrößern();
-                if(LagerVergrößern.WickleKaufAb(Händler, KaufAnzahl)) break;
+                if(KaufprozessEinleiten(Händler, KaufAnzahl)) break;
             }
             //Breche Kauf ab 
             if(UserInput == "z")
@@ -57,6 +57,25 @@ public class LagerVergrößernMenue
             }
             Console.WriteLine("Bitte geben Sie eine Zahl an oder brechen Sie den Kauf mit \"z\" ab");
         }
+    }
+
+    /// <summary>
+    /// Leite den Kaufprozess ein und gebe auftretende exceptions aus
+    /// </summary>
+    public bool KaufprozessEinleiten(Zwischenhändler Händler, int KaufAnzahl)
+    {
+        try
+        {
+            LagerVergrößern lagerVergrößern = new LagerVergrößern();
+            if(!lagerVergrößern.WickleKaufAb(Händler, KaufAnzahl)) return false;
+            Console.WriteLine("Vergrößerung erfolgreich\n");
+            return true;  
+        }
+        catch (ArgumentException e)
+        {
+            Console.WriteLine(e.Message);
+            return false;
+        }  
     }
 
 }

@@ -6,10 +6,12 @@ using System.Runtime.Serialization.Formatters;
 using System.Threading;
 using DateiLesen.Sim;
 
+
 namespace Zwischenhändler_1
 {
     public class Program
     {  
+       
         static void Main(string[] args)
         {
            DateiLesenKlasse DateiLesen = new DateiLesenKlasse();

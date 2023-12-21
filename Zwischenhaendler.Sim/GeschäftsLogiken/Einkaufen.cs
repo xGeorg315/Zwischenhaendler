@@ -15,21 +15,18 @@ namespace Einkaufen.Sim
             //Checke ob genug Platz in Lager
             if(KaufAnzahl > Händler.Lager.BerechneFreienPlatz())
             {
-                Console.WriteLine("Fehler beim Kauf, nicht genügend Platz im Lager\n");
-                return false;
+                throw new ArgumentException("Fehler beim Kauf, nicht genügend Platz im Lager\n");
             }
             //Checke ob genug Produkte Verfügbar sind
             if(KaufAnzahl > AusgewaehltesProdukt.Menge)
             { 
                 string Ausgabe = "Fehler beim Kauf, nicht genügend {0} Verfügbar\n";
-                Console.WriteLine(string.Format(Ausgabe, AusgewaehltesProdukt.ProduktName));
-                return false;
+                throw new ArgumentException(string.Format(Ausgabe, AusgewaehltesProdukt.ProduktName));
             }
             //Checke ob Genug Geld vorhanden
             if (NeuerKontostand < 0)
             {
-                Console.WriteLine("Fehler beim Kauf, nicht genug Geld\n");
-                return false;
+                throw new ArgumentException("Fehler beim Kauf, nicht genug Geld\n");
             }
                 return true;
         }
@@ -49,7 +46,6 @@ namespace Einkaufen.Sim
             Globals.VerfügbareProdukte[ProduktNummer - 1].Menge -= KaufAnzahl;
             //Addiere Menge in den Bestand 
             Händler.Lager.Lagerbestand += AusgewaehltesProdukt.Menge;
-            Console.WriteLine("Kauf erfolgreich\n");
         }
 
         /// <summary>

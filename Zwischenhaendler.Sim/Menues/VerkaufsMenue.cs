@@ -1,6 +1,7 @@
 using Zwischenhaendler.Sim;
 using GlobalsSim;
 using ProdukteSim;
+using VerkaufsSim;
 public class VerkaufsMenue
 {
     /// <summary>
@@ -100,6 +101,25 @@ public class VerkaufsMenue
                 return;
             }
         }
+    }
+
+    /// <summary>
+    /// Leite den Verkaufsprozess ein und gebe auftretende exceptions aus
+    /// </summary>
+    public bool VerkaufsprozessEinleiten(Zwischenhändler Händler, int AusgewaehltesProdukt, int KaufAnzahl)
+    {
+        try
+        {
+            Verkaufen Verkauf = new Verkaufen();
+            if(!Verkauf.BeginneVerkaufProzess(Händler, AusgewaehltesProdukt, KaufAnzahl)) return false;
+            Console.WriteLine("Verkauf erfolgreich\n");
+            return true;  
+        }
+        catch (ArgumentException e)
+        {
+            Console.WriteLine(e.Message);
+            return false;
+        }  
     }
 
     /// <summary>

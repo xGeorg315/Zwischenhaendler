@@ -5,6 +5,7 @@ using ProdukteSim;
 using GlobalsSim;
 public class EinkaufsMenue
 {
+    private RabattMenue rabattMenue = new RabattMenue();
     /// <summary>
     /// Starte das Einkaufsmenü
     /// </summary>
@@ -55,7 +56,7 @@ public class EinkaufsMenue
                 Produkt.Haltbarkeit, 
                 Math.Round(Produkt.EinkaufsPreis,2),
                 Produkt.Menge,
-                Händler.Rabatt.GebeRabattAus(Händler,i - 1)));
+                rabattMenue.GebeRabattAus(Händler,i - 1)));
             i++;
         }
     }
@@ -73,8 +74,7 @@ public class EinkaufsMenue
             //Checke ob UserInput ein Int ist 
             if (Int32.TryParse(UserInput, out KaufAnzahl))
             {
-                EinkaufenKlasse Einkauf = new EinkaufenKlasse();
-                if(Einkauf.BeginneKaufProzess(Händler, AusgewaehltesProdukt, KaufAnzahl, ProduktNummer)) return;
+               if(KaufprozessEinleiten(Händler, AusgewaehltesProdukt, KaufAnzahl, ProduktNummer)) return;
             }
             //Breche Kauf ab 
             if(UserInput == "z")
@@ -105,5 +105,24 @@ public class EinkaufsMenue
         }
         Ausgabe = "Es gibt kein Produkt mit der Nummer {0}";
         Console.WriteLine (string.Format(Ausgabe, ProduktNummer));   
+    }
+
+    /// <summary>
+    /// Leite den Einkaufssprozess ein und gebe auftretende exceptions aus
+    /// </summary>
+    public bool KaufprozessEinleiten(Zwischenhändler Händler, Produkte AusgewaehltesProdukt, int KaufAnzahl, int ProduktNummer)
+    {
+        try
+        {
+            EinkaufenKlasse Einkauf = new EinkaufenKlasse();
+            if(!Einkauf.BeginneKaufProzess(Händler, AusgewaehltesProdukt, KaufAnzahl, ProduktNummer)) return false;
+            Console.WriteLine("Kauf erfolgreich\n");
+            return true;  
+        }
+        catch (ArgumentException e)
+        {
+            Console.WriteLine(e.Message);
+            return false;
+        }  
     }
 }

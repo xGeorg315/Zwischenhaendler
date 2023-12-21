@@ -1,31 +1,32 @@
 using Zwischenhaendler.Sim;
-public class LagerVergrößern
+namespace LagerVergrößernSim
 {
-    /// <summary>
-    /// Passt alle Parameter an die sich durch den Kauf ändern und Speichert alle neuen Werte
-    /// </summary>
-    public bool WickleKaufAb (Zwischenhändler Händler, int KaufAnzahl)
+    public class LagerVergrößern
     {
-        double NeuerKontostand = Händler.Kontostand - KaufAnzahl * 50;
-        if (!ValidiereKauf(Händler, KaufAnzahl, NeuerKontostand)) return false;
-        Händler.Kontostand = NeuerKontostand;
-        Händler.Lager.MaxKapazität += KaufAnzahl;
-        Console.WriteLine("Kauf erfolgreich");
-        return true;
-    }
-
-    /// <summary>
-    /// Überprüft ob die Regeln des Kaufs eingehalteb werden
-    /// </summary>
-    public bool ValidiereKauf(Zwischenhändler Händler, int KaufAnzahl, double NeuerKontostand)
-    {
-        //Überprüfe ob genug Geld im Konto des Händler ist
-        if(NeuerKontostand < 0)
+        /// <summary>
+        /// Passt alle Parameter an die sich durch den Kauf ändern und Speichert alle neuen Werte
+        /// </summary>
+        public bool WickleKaufAb (Zwischenhändler Händler, int KaufAnzahl)
         {
-            Console.WriteLine("Kauf fehlgeschlagen, nicht genügend Geld");
-            return false;
+            double NeuerKontostand = Händler.Kontostand - KaufAnzahl * 50;
+            if (!ValidiereKauf(Händler, KaufAnzahl, NeuerKontostand)) return false;
+            Händler.Kontostand = NeuerKontostand;
+            Händler.Lager.MaxKapazität += KaufAnzahl;
+            return true;
         }
 
-        return true;
+        /// <summary>
+        /// Überprüft ob die Regeln des Kaufs eingehalteb werden
+        /// </summary>
+        public bool ValidiereKauf(Zwischenhändler Händler, int KaufAnzahl, double NeuerKontostand)
+        {
+            //Überprüfe ob genug Geld im Konto des Händler ist
+            if(NeuerKontostand < 0)
+            {
+                throw new ArgumentException("Nicht genügend Geld");
+            }
+
+            return true;
+        }
     }
 }
