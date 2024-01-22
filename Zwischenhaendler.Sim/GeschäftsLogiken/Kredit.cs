@@ -46,6 +46,7 @@ namespace KreditSim
             KreditBetrag = Betrag;
             this.ZinssatzProzent = ZinssatzProzent;
             KreditAufgenommen = true;
+            Haendler.Kontostand += Betrag;
             return true;
         }
     } 
